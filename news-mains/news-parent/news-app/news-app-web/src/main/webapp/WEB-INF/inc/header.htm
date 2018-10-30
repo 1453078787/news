@@ -1,0 +1,105 @@
+<!-- BEGIN HEADER -->
+<div class="page-header navbar navbar-fixed-top" style="background-color: #1BBC9B">
+    <!-- BEGIN HEADER INNER -->
+    <div class="page-header-inner ">
+        <!-- BEGIN LOGO -->
+        <div class="page-logo" style="width: auto">
+            <div class="menu-toggler sidebar-toggler" style="float:left;">
+                <span></span>
+            </div>
+            <a href="${ctx}/" style="margin-left:20px;width: auto;">
+                <font ></font>
+            </a>
+        </div>
+        <!-- END LOGO -->
+        <!-- BEGIN RESPONSIVE MENU TOGGLER -->
+        <a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse" data-target=".navbar-collapse">
+            <span></span>
+        </a>
+        <!-- END RESPONSIVE MENU TOGGLER -->
+        <!-- BEGIN TOP NAVIGATION MENU -->
+        <div class="top-menu">
+            <ul class="nav navbar-nav pull-right">
+                <#if (userMsgList?? && userMsgList?size gt 0)>
+                    <!-- 站内信 -->
+                    <li class="dropdown dropdown-extended dropdown-inbox" id="header_inbox_bar">
+                        <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"
+                           data-close-others="true">
+                            <i class="icon-envelope-open"></i>
+                            <span class="badge badge-default user-msg-num-total"> ${userMsgList?size!0} </span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="external">
+                                <h3>您有
+                                    <span class="bold user-msg-num-list">${userMsgList?size!0}</span> 条新信息</h3>
+                                <a href="#">查看所有</a>
+                            </li>
+                            <ul class="dropdown-menu-list scroller" style="height: 275px;" data-handle-color="#637283">
+                                <li>
+                                    <#if (userMsgList?? && userMsgList?size gt 0)>
+                                        <#list userMsgList as msg>
+                                            <a href="javascript:;">
+                                                <span class="click-user-msg" data='${msg.messageData}'> ${msg.msgContent} </span>
+                                                <span class="pull-right del-user-msg" data="${msg.id}"> 删除 </span>
+                                            </a>
+                                        </#list>
+                                        <#else>
+                                            <span>暂无消息</span>
+                                    </#if>
+                                </li>
+                            </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- 站内信 END-->
+                </#if>
+
+                <!-- END TODO DROPDOWN -->
+                <!-- BEGIN USER LOGIN DROPDOWN -->
+                <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
+                <li class="dropdown dropdown-user">
+                    <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true" style="color:#d0d0d0">
+                        <i class="icon icon-mars"></i>
+                        lalallala
+                        <#--<@shiro.user>-->
+                        <#--你好,[<@shiro.principal property="name"/>(<@shiro.principal property="badge"/>)]-->
+                    <#--</@shiro.user>-->
+
+                    <!--<i class="fa fa-angle-down"></i>-->
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-default">
+                        <li>
+                            <a href="${ctx}/LogIn/login.htm" target="_blank">
+                                <i class="icon icon-linux"></i> 我的信息 </a>
+                        </li>
+                        <li>
+                        <a href="javascript:;">
+                        <i class="icon icon-star-half-full"></i> 修改密码 </a>
+                        </li>
+                        <!--<li class="divider"> </li>-->
+                        <!--<li> -->
+                        <!--<a href="page_user_lock_1.html"> -->
+                        <!--<i class="icon-lock"></i> 锁 屏 </a> -->
+                        <!--</li> -->
+                        <li>
+                            <a href="javascript:;">
+                                <i class="icon icon-signout"></i> 退 出 </a>
+                        </li>
+                    </ul>
+                </li>
+                <!-- END USER LOGIN DROPDOWN -->
+                <!-- BEGIN QUICK SIDEBAR TOGGLER -->
+                <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
+                <!--                  <li class="dropdown dropdown-quick-sidebar-toggler"> -->
+                <!--                      <a href="javascript:;" onclick="User.logout();" class="dropdown-toggle"> -->
+                <!--                          <i class="icon-logout"></i> -->
+                <!--                      </a> -->
+                <!--                  </li> -->
+                <!-- END QUICK SIDEBAR TOGGLER -->
+            </ul>
+        </div>
+        <!-- END TOP NAVIGATION MENU -->
+    </div>
+    <!-- END HEADER INNER -->
+</div>
+<!-- END HEADER -->

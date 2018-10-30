@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: tdh.platform.member:member-lib-common:1.1.0-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/tdh/platform/member/member-lib-common/1.1.0-SNAPSHOT/member-lib-common-1.1.0-20170726.061740-6.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/tdh/platform/member/member-lib-common/1.1.0-SNAPSHOT/member-lib-common-1.1.0-20170726.061740-6-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/tdh/platform/member/member-lib-common/1.1.0-SNAPSHOT/member-lib-common-1.1.0-20170726.061740-6-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

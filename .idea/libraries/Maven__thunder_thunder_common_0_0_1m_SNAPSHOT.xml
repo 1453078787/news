@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: thunder:thunder-common:0.0.1m-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/thunder/thunder-common/0.0.1m-SNAPSHOT/thunder-common-0.0.1m-20180904.104218-7.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/thunder/thunder-common/0.0.1m-SNAPSHOT/thunder-common-0.0.1m-20180904.104218-7-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/thunder/thunder-common/0.0.1m-SNAPSHOT/thunder-common-0.0.1m-20180904.104218-7-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

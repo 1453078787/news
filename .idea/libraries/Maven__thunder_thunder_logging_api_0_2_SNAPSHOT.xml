@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: thunder:thunder-logging-api:0.2-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/thunder/thunder-logging-api/0.2-SNAPSHOT/thunder-logging-api-0.2-20170211.060804-2.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/thunder/thunder-logging-api/0.2-SNAPSHOT/thunder-logging-api-0.2-20170211.060804-2-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/thunder/thunder-logging-api/0.2-SNAPSHOT/thunder-logging-api-0.2-20170211.060804-2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

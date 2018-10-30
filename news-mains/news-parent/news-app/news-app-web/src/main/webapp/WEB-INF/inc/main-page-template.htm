@@ -1,0 +1,54 @@
+<#macro pageContent>
+    <!DOCTYPE html>
+    <!--[if IE 8]> <html lang="zh-cn" class="ie8 no-js"> <![endif]-->
+    <!--[if IE 9]> <html lang="zh-cn" class="ie9 no-js"> <![endif]-->
+    <!--[if !IE]><!-->
+
+    <html lang="zh-cn">
+    <!--<![endif]-->
+    <head><#include "/inc/tag.htm" />
+        <style>
+            .page-content{
+
+            }
+
+        </style>
+
+
+    </head>
+
+    <body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white">
+    <div class="page-wrapper">
+        <#include "/inc/header.htm" />
+        <div class="clearfix"></div>
+        <div class="page-container">
+            <#include "/inc/menu.htm" />
+            <div class="page-content-wrapper ">
+                <!-- BEGIN CONTENT BODY -->
+                <div class="page-content" style="background-color: aliceblue">
+
+                    <div class="page-bar">
+                        <ul class="page-breadcrumb">
+                        </ul>
+                    </div>
+                    <div class="page-content-wapper" style="padding-top:5px;">
+                        <#nested>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <!-- END CONTENT BODY -->
+            </div>
+        </div>
+        <#include "/inc/footer.htm" />
+    </div>
+
+    <#include "/inc/js.htm" />
+
+</#macro>
+<#macro jsContent>
+    <#nested>
+
+        </body>
+        </html>
+</#macro>
+

@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: tdh.platform.member:member-lib-exter-service:1.1.0-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/tdh/platform/member/member-lib-exter-service/1.1.0-SNAPSHOT/member-lib-exter-service-1.1.0-20170809.082220-13.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/tdh/platform/member/member-lib-exter-service/1.1.0-SNAPSHOT/member-lib-exter-service-1.1.0-20170809.082220-13-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/tdh/platform/member/member-lib-exter-service/1.1.0-SNAPSHOT/member-lib-exter-service-1.1.0-20170809.082220-13-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

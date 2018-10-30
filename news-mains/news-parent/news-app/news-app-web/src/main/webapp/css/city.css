@@ -1,0 +1,125 @@
+
+.citypicker {
+    background-color: #FFFFFF;
+    border: 1px solid #D5D5D5;
+    min-height: 248px;
+    position: absolute;
+    width: 337px;
+    z-index:10000;
+}
+.citypicker ul, .citypicker li {
+    list-style: none outside none;
+    margin: 0;
+    padding: 0;
+}
+.citypicker .citytabpanel {
+    background: url(../images/icon/citybg.gif) repeat-x scroll 0 0 transparent;
+    border-bottom: 1px solid #D5D5D5;
+    font-size: 14px;
+    height: 29px;
+    width: 337px;
+}
+.citytabpanel li {
+    border: 1px solid #E1E1E1;
+    color: #333333;
+    cursor: pointer;
+    float: left;
+    height: 28px;
+    line-height: 28px;
+    text-align: center;
+    width: 70px;
+}
+.citytabpanel li.cur {
+    background: url(../images/icon/citytag.gif) repeat-x scroll 0 0 transparent;
+    border: 1px solid #FF7800;
+    color: #FFFFFF;
+    cursor: default;
+}
+.citytabpanel li.clearbtn {
+    background: url("clearbtnbg.jpg") no-repeat scroll 0 0 transparent;
+    border: 0 none;
+    color: #FFFFFF;
+    float: right;
+    height: 22px;
+    line-height: 22px;
+    margin-top: 4px;
+    width: 42px;
+}
+.citypicker .citycontentpanel {
+    color: #555555;
+    font-size: 12px;
+    line-height: 22px;
+    margin: 20px 0 0 25px;
+    width: 300px;
+}
+.citycontentpanel span {
+    cursor: pointer;
+    display: inline-block;
+    text-align: center;
+    width: 60px;
+}
+.citycontentpanel span.cur {
+    color: #FF7F0E;
+    cursor: default;
+}
+.provincegroup {
+    overflow: hidden;
+}
+.provincegrouptag {
+    float: left;
+    width: 50px;
+}
+.provincegroupcontent {
+    float: left;
+    width: 240px;
+}
+.provincegroupcontent span {
+    text-align: center;
+    width: 48px;
+}
+.provincegroupcontent span.placeholder {
+    cursor: default;
+}
+.float_auto_height {
+    border: 0 none;
+    float: left;
+    height: 1px;
+    width: 80%;
+}
+
+
+.cityitem{
+    font-size: 14px;
+    color: #000000;
+    background-color: #ffffff;
+    margin: 0px;
+    padding: 2px 5px;
+    cursor: default;
+    display: block;
+    /*
+    if width will be 100% horizontal scrollbar will apear
+    when scroll mode will be used
+    */
+    /*width: 100%;*/
+    font: menu;
+    font-size: 12px;
+    /*
+    it is very important, if line-height not setted or setted
+    in relative units scroll will be broken in firefox
+    */
+    line-height: 16px;
+    overflow: hidden;
+}
+
+.cityitem.hl{
+    background-color: #00BF1C;
+    color: #ffffff;
+}
+.city_pinyin_hint_panel{
+    height: 250px;
+    overflow: scroll;
+    width: 150px;
+    overflow-x: hidden;
+    border: 1px solid #666666;
+    background-color: #ffffff;
+}

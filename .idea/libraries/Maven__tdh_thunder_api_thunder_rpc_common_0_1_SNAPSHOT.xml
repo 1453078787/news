@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: tdh.thunder.api:thunder-rpc-common:0.1-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/tdh/thunder/api/thunder-rpc-common/0.1-SNAPSHOT/thunder-rpc-common-0.1-20170218.040351-3.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/tdh/thunder/api/thunder-rpc-common/0.1-SNAPSHOT/thunder-rpc-common-0.1-20170218.040351-3-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/tdh/thunder/api/thunder-rpc-common/0.1-SNAPSHOT/thunder-rpc-common-0.1-20170218.040351-3-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

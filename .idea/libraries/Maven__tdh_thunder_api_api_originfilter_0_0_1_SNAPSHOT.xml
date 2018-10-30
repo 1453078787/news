@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: tdh.thunder.api:api-originfilter:0.0.1-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/tdh/thunder/api/api-originfilter/0.0.1-SNAPSHOT/api-originfilter-0.0.1-20161013.154251-1.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/tdh/thunder/api/api-originfilter/0.0.1-SNAPSHOT/api-originfilter-0.0.1-20161013.154251-1-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/tdh/thunder/api/api-originfilter/0.0.1-SNAPSHOT/api-originfilter-0.0.1-20161013.154251-1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

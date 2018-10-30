@@ -1,0 +1,109 @@
+@import url(http://fonts.googleapis.com/css?family=Raleway);
+
+*, *:before, *:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.wrap {
+  max-width: 1200px;
+  margin: 4em auto;
+  font-family: Raleway, Arial, sans-serif;
+}
+
+h2 {
+  margin-bottom: 1em;
+  border-bottom: 2px solid #eee;
+  line-height: 1.5;
+}
+
+h2 a {
+	text-decoration:none;
+}
+
+a.btn{
+   margin-right: 1em; /* remove this while use*/
+	display: inline-block;
+	outline: none;
+	*zoom: 1;
+	text-align: center;
+	text-decoration: none;
+	font-family: inherit;
+	font-weight: 300;
+	letter-spacing: 1px;
+	vertical-align: middle;
+	border: 1px solid;
+	transition: all 0.2s ease;
+	box-sizing: border-box;
+	text-shadow: 0 1px 0 rgba(0,0,0,0.01);
+}
+/* Sizes */
+.btn-large {
+	font-size: 1.0625em;
+	padding: 0.5625em 1.5em;
+}
+
+/* Colors */
+.btn-green {
+	color: #3CB371;
+	border-color: #3CB371;
+}
+.btn-green:hover {
+  background: #3CB371;
+  color: #fff;
+  border-color: #3CB371;		
+}
+
+.btn-blue {
+	color: #4682B4;
+	border-color: #4682B4;
+}
+.btn-blue:hover {
+  background: #4682B4;
+  color: #fff;
+  border-color: #4682B4;		
+}
+
+.btn-orange {
+	color: #FF8C00;
+	border-color: #FF8C00;
+}
+.btn-orange:hover {
+  background: #FF8C00;
+  color: #fff;
+  border-color: #FF8C00;		
+}
+
+.btn-aquamarine {
+	color: #8000ff;
+	border-color: #8000ff;
+}
+.btn-aquamarine:hover {
+  background: #8000ff;
+  color: #fff;
+  border-color: #8000ff;		
+}
+.btn-gray {
+	color: #808080;
+	border-color: #808080;
+}
+.btn-gray:hover {
+  background: #808080;
+  color: #fff;
+  border-color: #808080;	
+}
+.btn-red {
+	color: #B22222;
+	border-color: #B22222;
+}
+.btn-red:hover {
+  background: #B22222;
+  color: #fff;
+  border-color: #B22222;	
+}
+
+
+

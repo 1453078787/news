@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:mybatis="http://mybatis.org/schema/mybatis-spring" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:cache="http://www.springframework.org/schema/cache"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/context 
+	http://www.springframework.org/schema/context/spring-context-3.0.xsd
+	http://www.springframework.org/schema/tx 
+	http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+	http://code.alibabatech.com/schema/dubbo
+	http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+	http://www.springframework.org/schema/aop 
+	http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+	http://mybatis.org/schema/mybatis-spring
+	http://mybatis.org/schema/mybatis-spring.xsd">
+
+	<!--<import resource="spring-shiro.xml" />-->
+	<!--<import resource="redis-context.xml" />-->
+
+    <context:component-scan base-package="news.service,tdh.thunder.base.dict,tdh.thunder.common" />
+
+	<mybatis:scan base-package="tdh.oa.hris.dal.*.dao,tdh.thunder.base.dict.dao" />
+
+	<context:annotation-config />
+
+	<bean id="dataSource" class="org.logicalcobwebs.proxool.ProxoolDataSource">
+		<property name="driver" value="com.mysql.jdbc.Driver" />
+		<property name="driverUrl" value="${db.url}" />
+		<property name="user" value="${db.user}" />
+		<property name="password" value="${db.password}" />
+		<property name="alias" value="admin" />
+		<property name="houseKeepingTestSql" value="select 1" />
+		<property name="simultaneousBuildThrottle" value="20" />
+		<property name="maximumConnectionCount" value="80" />
+		<property name="minimumConnectionCount" value="3" />
+		<property name="prototypeCount" value="5" />
+		<property name="trace" value="true" />
+		<property name="maximumActiveTime" value="14400000" />
+	</bean>
+
+	<!--<bean id="fileStore" class="${fs.store}" scope="singleton" />-->
+
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+	</bean>
+
+	 <!--define the SqlSessionFactory -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="configLocation" value="classpath:spring/mybatis-config.xml" />
+	</bean>
+
+	<tx:annotation-driven transaction-manager="transactionManager" />
+
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<aop:config proxy-target-class="true">
+		<aop:pointcut id="allServiceMethods"
+			expression="execution(* news.service..*(..))" />
+		<aop:advisor advice-ref="defaultTransactionAdvice"
+			pointcut-ref="allServiceMethods" />
+
+		<aop:aspect id="logAspect" ref="ServiceLogInterceptor">
+			<aop:around pointcut-ref="allServiceMethods" method="log" />
+		</aop:aspect>
+	</aop:config>
+
+	<aop:aspectj-autoproxy proxy-target-class="true" />
+
+
+	<bean id="ServiceLogInterceptor" class="tdh.thunder.logging.api.InvocationLogInterceptor">
+		<property name="disableMethodDetailedReturnPattern" value="search*,list*" />
+		<property name="disableMethodDetailedReturnTypePattern"
+			value="*List" />
+	</bean>
+
+	<tx:advice id="defaultTransactionAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="query*" read-only="true" />
+			<tx:method name="list*" read-only="true" />
+			<tx:method name="search*" read-only="true" />
+			<tx:method name="get*" read-only="true" />
+			<tx:method name="count*" read-only="true" />
+			<tx:method name="*" propagation="REQUIRED" rollback-for="Exception" />
+		</tx:attributes>
+	</tx:advice>
+
+	<!--<bean id="ExportService" class="tdh.platform.ams.facade.common.ExportServiceImpl">-->
+		<!--<property name="attachmentURL" value="${ams.export.temp.path}"></property>-->
+	<!--</bean>-->
+
+</beans>

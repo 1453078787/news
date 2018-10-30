@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: thunder:thunder-aa:0.0.1-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/thunder/thunder-aa/0.0.1-SNAPSHOT/thunder-aa-0.0.1-20170313.062649-50.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/thunder/thunder-aa/0.0.1-SNAPSHOT/thunder-aa-0.0.1-20170313.062649-50-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/thunder/thunder-aa/0.0.1-SNAPSHOT/thunder-aa-0.0.1-20170313.062649-50-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

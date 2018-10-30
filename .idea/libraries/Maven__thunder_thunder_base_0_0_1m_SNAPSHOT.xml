@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: thunder:thunder-base:0.0.1m-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/thunder/thunder-base/0.0.1m-SNAPSHOT/thunder-base-0.0.1m-20160913.022943-1.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/thunder/thunder-base/0.0.1m-SNAPSHOT/thunder-base-0.0.1m-20160913.022943-1-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/thunder/thunder-base/0.0.1m-SNAPSHOT/thunder-base-0.0.1m-20160913.022943-1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

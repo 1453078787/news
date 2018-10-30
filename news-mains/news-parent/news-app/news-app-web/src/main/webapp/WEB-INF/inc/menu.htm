@@ -1,0 +1,62 @@
+<!-- BEGIN SIDEBAR -->
+<div class="page-sidebar-wrapper">
+    <!-- BEGIN SIDEBAR -->
+    <div class="page-sidebar navbar-collapse collapse" style="height: 100%">
+        <!-- BEGIN SIDEBAR MENU -->
+        <ul class="page-sidebar-menu  page-header-fixed " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200" style="padding-top: 20px">
+            <!-- DOC: To remove the sidebar toggler from the sidebar you just need to completely remove the below "sidebar-toggler-wrapper" LI element -->
+            <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+            <li class="sidebar-toggler-wrapper hide">
+                <div class="sidebar-toggler">
+                    <span></span>
+                </div>
+            </li>
+            <!-- END SIDEBAR TOGGLER BUTTON -->
+            <li class="sidebar-search-wrapper">
+                <!-- BEGIN RESPONSIVE QUICK SEARCH FORM -->
+                <form class="sidebar-search" action="${ctx}/estate/contract" method="get" hidden>
+                    <a href="javascript:;" class="remove">
+                        <i class="icon-close"></i>
+                    </a>
+                    <div class="input-group">
+                        <input type="text" name="contractNo" class="form-control" placeholder="Search">
+                        <span class="input-group-btn">
+                             <a href="javascript:;" class="btn submit">
+                                 <i class="icon-magnifier"></i>
+                             </a>
+                         </span>
+                    </div>
+                </form>
+                <!-- END RESPONSIVE QUICK SEARCH FORM -->
+            </li>
+            <li class="nav-item start ${(module?default('') == '' && module1?default('') == '')?string('active open','')}">
+                <a href="${ctx}/main.do" class="nav-link">
+                    <i class="icon icon-th"></i>
+                    <span class="title">系统首页</span>
+                </a>
+            </li>
+        <li class="nav-item ${(module?default('') == 'demo' || module1?default('') == 'demo')?string('active open','')} ">
+            <a href="${ctx}/perf/employee/to-employee-manager.do" class="nav-link">
+                <i class="icon icon-chat-line"></i>
+                <span class="title">我的信息</span>
+            </a>
+        </li>
+            <li class="nav-item ${(module?default('') == 'demo' || module1?default('') == 'demo')?string('active open','')} ">
+                <a href="${ctx}/task/to-list.do" class="nav-link">
+                    <i class="icon icon-tasks"></i>
+                    <span class="title">用户管理</span>
+                </a>
+            </li>
+            <li class="nav-item ${(module?default('') == 'demo' || module1?default('') == 'demo')?string('active open','')} ">
+                <a href="${ctx}/task/to-list.do" class="nav-link">
+                    <i class="icon icon-spin icon-cog"></i>
+                    <span class="title">新闻管理</span>
+                </a>
+            </li>
+</ul>
+<!-- END SIDEBAR MENU -->
+<!-- END SIDEBAR MENU -->
+</div>
+<!-- END SIDEBAR -->
+</div>
+<!-- END SIDEBAR -->
