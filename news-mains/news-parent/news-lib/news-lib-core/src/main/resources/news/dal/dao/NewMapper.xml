@@ -1,0 +1,447 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="news.dal.dao.NewMapper">
+  <resultMap id="BaseResultMap" type="news.dal.model.New">
+    <id column="new_id" jdbcType="INTEGER" property="newId" />
+    <result column="new_type_id" jdbcType="INTEGER" property="newTypeId" />
+    <result column="new_name" jdbcType="VARCHAR" property="newName" />
+    <result column="view_number" jdbcType="INTEGER" property="viewNumber" />
+    <result column="DELETED" jdbcType="INTEGER" property="deleted" />
+    <result column="CREATED_BY" jdbcType="INTEGER" property="createdBy" />
+    <result column="CREATED_BY_NAME" jdbcType="VARCHAR" property="createdByName" />
+    <result column="CREATED_TIME" jdbcType="TIMESTAMP" property="createdTime" />
+    <result column="UPDATED_BY" jdbcType="INTEGER" property="updatedBy" />
+    <result column="UPDATED_BY_NAME" jdbcType="VARCHAR" property="updatedByName" />
+    <result column="UPDATED_TIME" jdbcType="TIMESTAMP" property="updatedTime" />
+    <result column="VERSION" jdbcType="INTEGER" property="version" />
+    <result column="new_satus" jdbcType="VARCHAR" property="newSatus" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="news.dal.model.New">
+    <result column="new_content" jdbcType="LONGVARCHAR" property="newContent" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    new_id, new_type_id, new_name, view_number, DELETED, CREATED_BY, CREATED_BY_NAME, 
+    CREATED_TIME, UPDATED_BY, UPDATED_BY_NAME, UPDATED_TIME, VERSION, new_satus
+  </sql>
+  <sql id="Blob_Column_List">
+    new_content
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="news.dal.model.NewExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from new
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="news.dal.model.NewExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from new
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from new
+    where new_id = #{newId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from new
+    where new_id = #{newId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="news.dal.model.NewExample">
+    delete from new
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="news.dal.model.New">
+    <selectKey keyProperty="newId" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into new (new_type_id, new_name, view_number, 
+      DELETED, CREATED_BY, CREATED_BY_NAME, 
+      CREATED_TIME, UPDATED_BY, UPDATED_BY_NAME, 
+      UPDATED_TIME, VERSION, new_satus, 
+      new_content)
+    values (#{newTypeId,jdbcType=INTEGER}, #{newName,jdbcType=VARCHAR}, #{viewNumber,jdbcType=INTEGER}, 
+      #{deleted,jdbcType=INTEGER}, #{createdBy,jdbcType=INTEGER}, #{createdByName,jdbcType=VARCHAR}, 
+      #{createdTime,jdbcType=TIMESTAMP}, #{updatedBy,jdbcType=INTEGER}, #{updatedByName,jdbcType=VARCHAR}, 
+      #{updatedTime,jdbcType=TIMESTAMP}, #{version,jdbcType=INTEGER}, #{newSatus,jdbcType=VARCHAR}, 
+      #{newContent,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="news.dal.model.New">
+    <selectKey keyProperty="newId" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into new
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="newTypeId != null">
+        new_type_id,
+      </if>
+      <if test="newName != null">
+        new_name,
+      </if>
+      <if test="viewNumber != null">
+        view_number,
+      </if>
+      <if test="deleted != null">
+        DELETED,
+      </if>
+      <if test="createdBy != null">
+        CREATED_BY,
+      </if>
+      <if test="createdByName != null">
+        CREATED_BY_NAME,
+      </if>
+      <if test="createdTime != null">
+        CREATED_TIME,
+      </if>
+      <if test="updatedBy != null">
+        UPDATED_BY,
+      </if>
+      <if test="updatedByName != null">
+        UPDATED_BY_NAME,
+      </if>
+      <if test="updatedTime != null">
+        UPDATED_TIME,
+      </if>
+      <if test="version != null">
+        VERSION,
+      </if>
+      <if test="newSatus != null">
+        new_satus,
+      </if>
+      <if test="newContent != null">
+        new_content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="newTypeId != null">
+        #{newTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="newName != null">
+        #{newName,jdbcType=VARCHAR},
+      </if>
+      <if test="viewNumber != null">
+        #{viewNumber,jdbcType=INTEGER},
+      </if>
+      <if test="deleted != null">
+        #{deleted,jdbcType=INTEGER},
+      </if>
+      <if test="createdBy != null">
+        #{createdBy,jdbcType=INTEGER},
+      </if>
+      <if test="createdByName != null">
+        #{createdByName,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedBy != null">
+        #{updatedBy,jdbcType=INTEGER},
+      </if>
+      <if test="updatedByName != null">
+        #{updatedByName,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedTime != null">
+        #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="version != null">
+        #{version,jdbcType=INTEGER},
+      </if>
+      <if test="newSatus != null">
+        #{newSatus,jdbcType=VARCHAR},
+      </if>
+      <if test="newContent != null">
+        #{newContent,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="news.dal.model.NewExample" resultType="java.lang.Long">
+    select count(*) from new
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update new
+    <set>
+      <if test="record.newId != null">
+        new_id = #{record.newId,jdbcType=INTEGER},
+      </if>
+      <if test="record.newTypeId != null">
+        new_type_id = #{record.newTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="record.newName != null">
+        new_name = #{record.newName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.viewNumber != null">
+        view_number = #{record.viewNumber,jdbcType=INTEGER},
+      </if>
+      <if test="record.deleted != null">
+        DELETED = #{record.deleted,jdbcType=INTEGER},
+      </if>
+      <if test="record.createdBy != null">
+        CREATED_BY = #{record.createdBy,jdbcType=INTEGER},
+      </if>
+      <if test="record.createdByName != null">
+        CREATED_BY_NAME = #{record.createdByName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createdTime != null">
+        CREATED_TIME = #{record.createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updatedBy != null">
+        UPDATED_BY = #{record.updatedBy,jdbcType=INTEGER},
+      </if>
+      <if test="record.updatedByName != null">
+        UPDATED_BY_NAME = #{record.updatedByName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updatedTime != null">
+        UPDATED_TIME = #{record.updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.version != null">
+        VERSION = #{record.version,jdbcType=INTEGER},
+      </if>
+      <if test="record.newSatus != null">
+        new_satus = #{record.newSatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.newContent != null">
+        new_content = #{record.newContent,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update new
+    set new_id = #{record.newId,jdbcType=INTEGER},
+      new_type_id = #{record.newTypeId,jdbcType=INTEGER},
+      new_name = #{record.newName,jdbcType=VARCHAR},
+      view_number = #{record.viewNumber,jdbcType=INTEGER},
+      DELETED = #{record.deleted,jdbcType=INTEGER},
+      CREATED_BY = #{record.createdBy,jdbcType=INTEGER},
+      CREATED_BY_NAME = #{record.createdByName,jdbcType=VARCHAR},
+      CREATED_TIME = #{record.createdTime,jdbcType=TIMESTAMP},
+      UPDATED_BY = #{record.updatedBy,jdbcType=INTEGER},
+      UPDATED_BY_NAME = #{record.updatedByName,jdbcType=VARCHAR},
+      UPDATED_TIME = #{record.updatedTime,jdbcType=TIMESTAMP},
+      VERSION = #{record.version,jdbcType=INTEGER},
+      new_satus = #{record.newSatus,jdbcType=VARCHAR},
+      new_content = #{record.newContent,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update new
+    set new_id = #{record.newId,jdbcType=INTEGER},
+      new_type_id = #{record.newTypeId,jdbcType=INTEGER},
+      new_name = #{record.newName,jdbcType=VARCHAR},
+      view_number = #{record.viewNumber,jdbcType=INTEGER},
+      DELETED = #{record.deleted,jdbcType=INTEGER},
+      CREATED_BY = #{record.createdBy,jdbcType=INTEGER},
+      CREATED_BY_NAME = #{record.createdByName,jdbcType=VARCHAR},
+      CREATED_TIME = #{record.createdTime,jdbcType=TIMESTAMP},
+      UPDATED_BY = #{record.updatedBy,jdbcType=INTEGER},
+      UPDATED_BY_NAME = #{record.updatedByName,jdbcType=VARCHAR},
+      UPDATED_TIME = #{record.updatedTime,jdbcType=TIMESTAMP},
+      VERSION = #{record.version,jdbcType=INTEGER},
+      new_satus = #{record.newSatus,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="news.dal.model.New">
+    update new
+    <set>
+      <if test="newTypeId != null">
+        new_type_id = #{newTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="newName != null">
+        new_name = #{newName,jdbcType=VARCHAR},
+      </if>
+      <if test="viewNumber != null">
+        view_number = #{viewNumber,jdbcType=INTEGER},
+      </if>
+      <if test="deleted != null">
+        DELETED = #{deleted,jdbcType=INTEGER},
+      </if>
+      <if test="createdBy != null">
+        CREATED_BY = #{createdBy,jdbcType=INTEGER},
+      </if>
+      <if test="createdByName != null">
+        CREATED_BY_NAME = #{createdByName,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedBy != null">
+        UPDATED_BY = #{updatedBy,jdbcType=INTEGER},
+      </if>
+      <if test="updatedByName != null">
+        UPDATED_BY_NAME = #{updatedByName,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedTime != null">
+        UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="version != null">
+        VERSION = #{version,jdbcType=INTEGER},
+      </if>
+      <if test="newSatus != null">
+        new_satus = #{newSatus,jdbcType=VARCHAR},
+      </if>
+      <if test="newContent != null">
+        new_content = #{newContent,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where new_id = #{newId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="news.dal.model.New">
+    update new
+    set new_type_id = #{newTypeId,jdbcType=INTEGER},
+      new_name = #{newName,jdbcType=VARCHAR},
+      view_number = #{viewNumber,jdbcType=INTEGER},
+      DELETED = #{deleted,jdbcType=INTEGER},
+      CREATED_BY = #{createdBy,jdbcType=INTEGER},
+      CREATED_BY_NAME = #{createdByName,jdbcType=VARCHAR},
+      CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      UPDATED_BY = #{updatedBy,jdbcType=INTEGER},
+      UPDATED_BY_NAME = #{updatedByName,jdbcType=VARCHAR},
+      UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP},
+      VERSION = #{version,jdbcType=INTEGER},
+      new_satus = #{newSatus,jdbcType=VARCHAR},
+      new_content = #{newContent,jdbcType=LONGVARCHAR}
+    where new_id = #{newId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="news.dal.model.New">
+    update new
+    set new_type_id = #{newTypeId,jdbcType=INTEGER},
+      new_name = #{newName,jdbcType=VARCHAR},
+      view_number = #{viewNumber,jdbcType=INTEGER},
+      DELETED = #{deleted,jdbcType=INTEGER},
+      CREATED_BY = #{createdBy,jdbcType=INTEGER},
+      CREATED_BY_NAME = #{createdByName,jdbcType=VARCHAR},
+      CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      UPDATED_BY = #{updatedBy,jdbcType=INTEGER},
+      UPDATED_BY_NAME = #{updatedByName,jdbcType=VARCHAR},
+      UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP},
+      VERSION = #{version,jdbcType=INTEGER},
+      new_satus = #{newSatus,jdbcType=VARCHAR}
+    where new_id = #{newId,jdbcType=INTEGER}
+  </update>
+
+
+
+  <!--************************************************************************************************-->
+
+  <resultMap id="NewDtoResultMap" type="news.common.dto.NewsDto">
+    <id column="new_id" jdbcType="INTEGER" property="newId" />
+    <result column="new_type_id" jdbcType="INTEGER" property="newTypeId" />
+    <result column="new_name" jdbcType="VARCHAR" property="newName" />
+    <result column="view_number" jdbcType="INTEGER" property="viewNumber" />
+    <result column="DELETED" jdbcType="INTEGER" property="deleted" />
+    <result column="CREATED_BY" jdbcType="INTEGER" property="createdBy" />
+    <result column="CREATED_BY_NAME" jdbcType="VARCHAR" property="createdByName" />
+    <result column="CREATED_TIME" jdbcType="TIMESTAMP" property="createdTime" />
+    <result column="UPDATED_BY" jdbcType="INTEGER" property="updatedBy" />
+    <result column="UPDATED_BY_NAME" jdbcType="VARCHAR" property="updatedByName" />
+    <result column="UPDATED_TIME" jdbcType="TIMESTAMP" property="updatedTime" />
+    <result column="VERSION" jdbcType="INTEGER" property="version" />
+    <result column="new_content" jdbcType="LONGVARCHAR" property="newContent" />
+  </resultMap>
+
+  <select id="list" parameterType="news.common.dto.criteria.NewCriteria" resultMap="NewDtoResultMap">
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from new
+    WHERE new.deleted = 0
+    <if test="newTypeId != null">
+      and new.new_type_id = #{newTypeId,jdbcType=INTEGER}
+    </if>
+    ORDER by new.UPDATED_TIME desc,new.CREATED_BY_NAME desc
+    <if test="!isAllList">
+      limit 50
+    </if>
+  </select>
+</mapper>

@@ -21,7 +21,7 @@
 
     <context:component-scan base-package="news.service,tdh.thunder.base.dict,tdh.thunder.common" />
 
-	<mybatis:scan base-package="tdh.oa.hris.dal.*.dao,tdh.thunder.base.dict.dao" />
+	<mybatis:scan base-package="news.dal.dao,tdh.thunder.base.dict.dao" />
 
 	<context:annotation-config />
 
