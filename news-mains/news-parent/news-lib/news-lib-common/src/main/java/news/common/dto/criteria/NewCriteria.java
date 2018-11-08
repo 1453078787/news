@@ -9,7 +9,7 @@ public class NewCriteria {
     }
 
     public void setIsAllList(boolean isAllList) {
-        isAllList = isAllList;
+        this.isAllList = isAllList;
     }
 
     public Integer getNewTypeId() {

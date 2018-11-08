@@ -68,4 +68,12 @@ public class NewTypeServiceImpl implements NewTypeService{
         }
         return list;
     }
+
+    @Override
+    public void deleteNewType(int typeId) {
+        NewType type = new NewType();
+        type.setDeleted(typeId);
+        type.setNewTypeId(typeId);
+        newTypeMapper.updateByPrimaryKeySelective(type);
+    }
 }

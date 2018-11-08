@@ -4,10 +4,14 @@
 <div class="page-table-wapper">
     <div class="portlet light bordered">
         <div class="row">
-            <div class="col-md-12 text-right" style="margin-top: 20px;margin-left: 1px; ">
-                <button class="btn btn-info " type="button" data-moveable="true" data-toggle="modal" data-target="#myModal">添加分类</button>
-                <button class="btn btn-warning " type="button">删除分类</button>
-            </div>
+            <!--<div class="col-md-12 text-left" style="margin-top: 20px;margin-left: 1px; ">-->
+            <button class="btn btn-warning " type="button" style="margin-top: 10px;margin-left: 1px;float: right;margin-bottom: 10px">删除新闻</button>
+            <button class="btn btn-info " data-position="50px" data-toggle="modal" data-target="#addModal" style="margin-top: 10px;margin-left: 1px;float: right;margin-bottom: 10px" id="edit-news">编辑新闻</button>
+            <!--</div>-->
+            <!--<div class="col-md-12 text-right" style="margin-top: 20px;margin-left: 1px; ">-->
+                <button class="btn btn-info " type="button" data-moveable="true" data-toggle="modal" data-target="#myModal" style="margin-top: 10px;margin-left: 1px;float: left;margin-bottom: 10px">添加分类</button>
+                <button class="btn btn-warning " type="button" data-moveable="true" data-toggle="modal" data-target="#deleteTypeModal" id="delete-type" style="margin-top: 10px;margin-left: 1px;float: left;margin-bottom: 10px">删除分类</button>
+            <!--</div>-->
         </div>
         <ul class="nav nav-tabs" id="ul-tab">
         </ul>
@@ -57,18 +61,104 @@
                             <span style="color:red">*</span>分类名称</label>
 
                         <div class="col-md-8">
-                            <select class="form-control validate[required]" id="type-select"></select>
+                            <div  style="border: 1px solid #277de2;border-radius:5px;">
+                            <select id="type-select" class="validate[required]" style="width: 100%">
+
+                            </select>
+                            </div>
+
+                            <!--<select class="form-control validate[required]" id="type-select" style="width: 100px;"></select>-->
                         </div>
                     </div>
                 </form>
 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal" id="close-modal">关闭</button>
-                <button type="button" class="btn btn-primary" onclick="addNewType()">保存</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" id="close-delete-modal">关闭</button>
+                <button type="button" class="btn btn-primary" onclick="deleteNewType()">确定删除</button>
             </div>
         </div>
     </div>
+</div>
+
+<div class="modal fade" id="addModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-fullscreen" style="height: 100%">
+        <div class="modal-content" style="height: 100%">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">编辑新闻</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal validation" id="edit-params" onsubmit="return false;" enctype="multipart/form-data" method="post">
+                    <div class="form-group" style="margin-top: 20px">
+                        <label class="col-md-3 control-label">
+                            <span style="color:red">*</span>分类名称</label>
+
+                        <div class="col-md-8">
+                            <div  style="border: 1px solid #ccc;border-radius:4px;width: 400px;height: 35px">
+                                <select id="type2-select" class="validate[required]" style="width: 100%;height: 35px" name="newTypeId">
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">
+                            <span style="color:red">*</span>新闻标题</label>
+
+                        <div class="col-md-8">
+
+                            <input type="text" class="form-control validate[required]" style="width: 600px" id="news-title" name="newName">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">
+                            <span><input type="file" placeholder="选择文件" id="file" onchange="fileChange()" style="display: none"></span></label>
+                        <div class="col-md-4">
+                            <button type="button" class="btn btn-primary" id="select-file"><i class="red">+  </i>选择文件</button>
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">
+                            <span style="color:red">*</span>新闻内容</label>
+
+                        <div class="col-md-8">
+                            <input type="text" id="div-value" class="validate[required]" readonly style="border: 0px;height: 0px;width: 0px">
+                            <!--<div id='uploaderExample3' class="uploader" data-ride="uploader" data-url="${ctx}/upload.do">-->
+                                <!--<div class="uploader-message text-center">-->
+                                    <!--<div class="content"></div>-->
+                                    <!--<button type="button" class="close">×</button>-->
+                                <!--</div>-->
+                                <!--<div class="uploader-files file-list file-list-grid"></div>-->
+                                <!--<div>-->
+                                    <!--<hr class="divider">-->
+                                    <!--<div class="uploader-status pull-right text-muted"></div>-->
+                                    <!--<button type="button" class="btn btn-link uploader-btn-browse"><i class="icon icon-plus"></i> 选择文件</button>-->
+                                    <!--<button type="button" class="btn btn-link uploader-btn-start"><i class="icon icon-cloud-upload"></i> 开始上传</button>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <div style="width: 100%;height: 500px;border: 1px solid #ccc;border-radius: 4px"  id="news-content" contenteditable="true">
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 text-center" style="margin-top: 20px;margin-left: 1px; ">
+                            <button type="button" class="btn btn-primary" id="save-dept">保存</button>
+                            <button type="button" class="btn btn-success" id="upload-news">上传</button>
+                            <button type="button" class="btn btn-info" id="save-dept">审核</button>
+                            <button type="button" class="btn btn-warning" id="save-dept">驳回</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!--<div class="modal-footer">-->
+                <!--<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>-->
+                <!--<button type="button" class="btn btn-primary">提交更改</button>-->
+            <!--</div>-->
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
 </div>
 </@pageContent>
 <@jsContent>
@@ -82,4 +172,7 @@
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css"/>
 
 <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.js"></script>
+<script type="text/javascript" src="${js}/select2/select2.min.js?v=${appver}"></script>
+<script type="text/javascript" src="${js}/select2/zh-CN.js?v=${appver}"></script>
+
 </@jsContent>

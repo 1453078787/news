@@ -1,12 +1,16 @@
 package news.common.dto;
 
+import org.hibernate.validator.constraints.NotBlank;
+
+import javax.validation.constraints.Min;
 import java.util.Date;
 
 public class NewsDto {
+
     private Integer newId;
-
+    @Min(value = 1, message = "新闻类型不能为空")
     private Integer newTypeId;
-
+    @NotBlank(message = "新闻名字不能为空")
     private String newName;
 
     private Integer viewNumber;
@@ -26,7 +30,7 @@ public class NewsDto {
     private Date updatedTime;
 
     private Integer version;
-
+    @NotBlank(message = "新闻内容不能为空")
     private String newContent;
 
     private String newSatus;

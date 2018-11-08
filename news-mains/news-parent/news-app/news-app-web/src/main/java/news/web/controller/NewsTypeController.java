@@ -47,4 +47,17 @@ public class NewsTypeController {
         response.setSuccess(true).setBody(list);
         return response;
     }
+
+    @ResponseBody
+    @RequestMapping("/delete")
+    public BaseResponse delete(Integer typeId){
+        BaseResponse response = new BaseResponse();
+        if(typeId == null) {
+            response.setSuccess(false).setMessage("删除分类id为空");
+            return response;
+        }
+        newTypeService.deleteNewType(typeId);
+        response.setSuccess(true).setMessage("删除分类成功");
+        return response;
+    }
 }

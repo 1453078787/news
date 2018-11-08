@@ -9,4 +9,5 @@ import java.util.List;
 public interface NewTypeService {
     void addNewType(NewTypeDto newTypeDto) throws NewException;
     List<NewTypeDto> listNewType();
+    void deleteNewType(int typeId);
 }

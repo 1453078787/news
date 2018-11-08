@@ -426,7 +426,8 @@
     <result column="UPDATED_BY_NAME" jdbcType="VARCHAR" property="updatedByName" />
     <result column="UPDATED_TIME" jdbcType="TIMESTAMP" property="updatedTime" />
     <result column="VERSION" jdbcType="INTEGER" property="version" />
-    <result column="new_content" jdbcType="LONGVARCHAR" property="newContent" />
+    <result column="new_content" jdbcType="LONGVARCHAR" property="newContent"/>
+    <result column="new_satus" jdbcType="VARCHAR" property="newSatus" />
   </resultMap>
 
   <select id="list" parameterType="news.common.dto.criteria.NewCriteria" resultMap="NewDtoResultMap">
