@@ -4,7 +4,9 @@ import news.common.NewException;
 import news.common.dto.NewsDto;
 import news.common.dto.criteria.NewCriteria;
 import news.dal.dao.NewMapper;
+import news.dal.dao.NewTypeMapper;
 import news.dal.model.New;
+import news.dal.model.NewType;
 import news.service.NewsManageService;
 import org.apache.commons.collections.CollectionUtils;
 import org.slf4j.Logger;
@@ -23,6 +25,9 @@ public class NewsManageServiceImpl implements NewsManageService{
 
     @Autowired
     private NewMapper newMapper;
+
+    @Autowired
+    private NewTypeMapper newTypeMapper;
 
     @Override
     public List<NewsDto> listNews(NewCriteria criteria) {
@@ -59,5 +64,15 @@ public class NewsManageServiceImpl implements NewsManageService{
             LOG.error(e.getMessage(),e);
             throw new NewException("新增失败");
         }
+    }
+
+    @Override
+    public NewsDto newDetail(int newId) {
+        New aNew = newMapper.selectByPrimaryKey(newId);
+        NewType newType = newTypeMapper.selectByPrimaryKey(aNew.getNewTypeId());
+        NewsDto newsDto = new NewsDto();
+        BeanUtils.copyProperties(aNew, newsDto);
+        newsDto.setNewTypeName(newType.getNewTypeName());
+        return newsDto;
     }
 }

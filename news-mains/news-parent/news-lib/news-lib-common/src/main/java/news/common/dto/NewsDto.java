@@ -1,5 +1,6 @@
 package news.common.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.validation.constraints.Min;
@@ -10,6 +11,7 @@ public class NewsDto {
     private Integer newId;
     @Min(value = 1, message = "新闻类型不能为空")
     private Integer newTypeId;
+    private String newTypeName;
     @NotBlank(message = "新闻名字不能为空")
     private String newName;
 
@@ -34,6 +36,14 @@ public class NewsDto {
     private String newContent;
 
     private String newSatus;
+
+    public String getNewTypeName() {
+        return newTypeName;
+    }
+
+    public void setNewTypeName(String newTypeName) {
+        this.newTypeName = newTypeName;
+    }
 
     public String getNewSatus() {
         return newSatus;

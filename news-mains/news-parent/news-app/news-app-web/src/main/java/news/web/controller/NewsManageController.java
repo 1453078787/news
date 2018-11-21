@@ -14,6 +14,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -38,19 +39,29 @@ public class NewsManageController {
         return "news/add";
     }
 
+    @RequestMapping("/to-detail")
+    public String toDetail(Integer newId, Model model) {
+        if(newId != null) {
+            NewsDto newsDto = newsManageService.newDetail(newId);
+            model.addAttribute("newsDto", newsDto);
+        }
+        return "news/detail";
+    }
+
     @ResponseBody
     @RequestMapping("/put")
     public BaseResponse add(@RequestBody NewsDto newsDto){
         BaseResponse response = new BaseResponse();
-        ValidationResult validateEntity = ValidatorUtil.validateEntity(newsDto);
-        if (validateEntity.hasErrors()) {
-            response.setSuccess(false).setMessage(validateEntity.toString());
-            return response;
+        if("PUT".equals(newsDto.getNewSatus())) {
+            ValidationResult validateEntity = ValidatorUtil.validateEntity(newsDto);
+            if (validateEntity.hasErrors()) {
+                response.setSuccess(false).setMessage(validateEntity.toString());
+                return response;
+            }
         }
         try {
-            newsDto.setNewSatus("PUT");
             newsManageService.putNews(newsDto);
-            response.setSuccess(true);
+            response.setSuccess(true).setMessage("新增成功");
         } catch (NewException e) {
             response.setMessage(e.getMessage());
             LOG.error(e.getMessage(), e);
@@ -74,5 +85,6 @@ public class NewsManageController {
         String result = jsonObject.toString();
         return result;
     }
+
 
 }

@@ -108,7 +108,7 @@ function initDataTable($selctor, typeId){
                 }
             },
             { "data": function(row){
-                    return "<a href='#'>"+ row['newName'] +"</a>"
+                    return "<a href=" + conf.ctx + "/manage/to-detail.do?newId=" + row['newId'] +">"+ row['newName'] +"</a>";
                 }
             },
             { "data": "viewNumber" },
@@ -272,6 +272,7 @@ $("#select-file").click(function(){
     $("#file").click();
 });
 
+//点击上传新闻
 $("#upload-news").click(function(){
     $("#div-value").val($("#news-content").html());
 
@@ -279,8 +280,14 @@ $("#upload-news").click(function(){
     if (!validateResult) {
         return false;
     }
+    addnews("PUT");
+
+});
+
+function addnews(type) {
     var editNews = $("#edit-params").serializeJsonObject();
     editNews.newContent = $("#news-content").html();
+    editNews.newSatus = type;
 
     $.ajax({
         type: "POST",
@@ -291,6 +298,8 @@ $("#upload-news").click(function(){
         success: function(response){
             if(response.success){
                 toastr["success"](response.message?response.message:"新增成功","温馨提示");
+                $(".close").click();
+                flash();
             }else{
                 toastr["error"](response.message?response.message:"新增失败","温馨提示");
             }
@@ -299,6 +308,11 @@ $("#upload-news").click(function(){
             toastr["error"]("请求失败","温馨提示");
         }
     });
+}
 
+
+$("#save-news").click(function(){
+    $("#div-value").val($("#news-content").html());
+    addnews("SAVE");
 });
 
