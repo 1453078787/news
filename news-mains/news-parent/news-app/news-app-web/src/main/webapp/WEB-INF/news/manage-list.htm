@@ -5,7 +5,7 @@
     <div class="portlet light bordered">
         <div class="row">
             <!--<div class="col-md-12 text-left" style="margin-top: 20px;margin-left: 1px; ">-->
-            <button class="btn btn-warning " type="button" style="margin-top: 10px;margin-left: 1px;float: right;margin-bottom: 10px">删除新闻</button>
+            <button class="btn btn-warning " type="button" style="margin-top: 10px;margin-left: 1px;float: right;margin-bottom: 10px" data-moveable="true" data-toggle="modal" data-target="#deleteNewModal">删除新闻</button>
             <button class="btn btn-info " data-position="50px" data-toggle="modal" data-target="#addModal" style="margin-top: 10px;margin-left: 1px;float: right;margin-bottom: 10px" id="edit-news">编辑新闻</button>
             <!--</div>-->
             <!--<div class="col-md-12 text-right" style="margin-top: 20px;margin-left: 1px; ">-->
@@ -107,12 +107,12 @@
 
                         <div class="col-md-8">
 
-                            <input type="text" class="form-control validate[required]" style="width: 600px" id="news-title" name="newName">
+                            <input type="text" class="form-control validate[required]" style="width: 600px" id="news-title" name="newName" maxlength="100">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label">
-                            <span><input type="file" placeholder="选择文件" id="file" onchange="fileChange()" style="display: none"></span></label>
+                            <span><input type="file" placeholder="选择文件" id="file" style="display: none"></span></label>
                         <div class="col-md-4">
                             <button type="button" class="btn btn-primary" id="select-file"><i class="red">+  </i>选择文件</button>
 
@@ -137,11 +137,27 @@
                                     <!--<button type="button" class="btn btn-link uploader-btn-start"><i class="icon icon-cloud-upload"></i> 开始上传</button>-->
                                 <!--</div>-->
                             <!--</div>-->
-                            <div style="width: 100%;height: 500px;border: 1px solid #ccc;border-radius: 4px"  id="news-content" contenteditable="true">
+                            <div style="width: 100%;height: 1000px;border: 1px solid #ccc;border-radius: 4px"  id="news-content" contenteditable="true">
 
                             </div>
-
                         </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">
+                        </label>
+                        <div class="col-md-4">
+                            <button type="button" class="btn btn-primary" id="upload-vedio">上传视频</button>
+                            <button type="button" class="btn btn-warning" id="delete-vedio">删除视频</button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label"></label>
+                        <div class="col-md-8">
+                            <div style="width: 100%;height: 600px;border: 1px solid #ccc;border-radius: 4px" id="content-vedio">
+
+                            </div>
+                        </div>
+
                     </div>
                     <div class="row">
                         <div class="col-md-12 text-center" style="margin-top: 20px;margin-left: 1px; ">
@@ -160,9 +176,25 @@
         </div><!-- /.modal-content -->
     </div><!-- /.modal -->
 </div>
+<div class="modal fade" id="deleteNewModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                <h4 class="modal-title">删除新闻</h4>
+            </div>
+            <div class="modal-body">
+                确定删除吗？
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" id="close-delete-new-modal">关闭</button>
+                <button type="button" class="btn btn-primary" onclick="deleteNew()">确定删除</button>
+            </div>
+        </div>
+    </div>
+</div>
 </@pageContent>
 <@jsContent>
-<script type="text/javascript" src="${js}/news/manage-list.js?v=${appver}"></script>
 <link rel="stylesheet" href="${css}/tab/zui.tabs.css?v=${appver}" type="text/css" />
 <script type="text/javascript" src="${js}/tab/zui.tabs.js?v=${appver}"></script>
 <!--<link rel="stylesheet" type="text/css" href="${css}/datatable.min.css"/>-->
@@ -174,5 +206,7 @@
 <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.js"></script>
 <script type="text/javascript" src="${js}/select2/select2.min.js?v=${appver}"></script>
 <script type="text/javascript" src="${js}/select2/zh-CN.js?v=${appver}"></script>
-
+<script type="text/javascript" src="${js}/news/manage-list.js?v=${appver}"></script>
+<link rel="stylesheet" href="${css}/lightbox.less?v=${appver}" type="text/css" />
+<script type="text/javascript" src="${js}/lightbox.js?v=${appver}"></script>
 </@jsContent>

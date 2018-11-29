@@ -18,6 +18,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import tdh.thunder.common.PaginatedList;
 
 import java.util.List;
 
@@ -61,7 +62,7 @@ public class NewsManageController {
         }
         try {
             newsManageService.putNews(newsDto);
-            response.setSuccess(true).setMessage("新增成功");
+            response.setSuccess(true).setMessage("编辑新闻成功");
         } catch (NewException e) {
             response.setMessage(e.getMessage());
             LOG.error(e.getMessage(), e);
@@ -71,20 +72,46 @@ public class NewsManageController {
 
     @ResponseBody
     @RequestMapping("/list-type")
-    public String listByType(Integer typeId) {
-        if(typeId == null){
+    public BaseResponse<PaginatedList<NewsDto>> listByType(NewCriteria criteria) {
+        if(criteria.getNewTypeId() == null){
             return null;
         }
-        NewCriteria criteria = new NewCriteria();
-        criteria.setNewTypeId(typeId);
+        BaseResponse<PaginatedList<NewsDto>> response = new BaseResponse<>();
         criteria.setIsAllList(true);
-        List<NewsDto> dtoList = newsManageService.listNews(criteria);
-        ResponseDataTable data = new ResponseDataTable();
-        data.setData(dtoList);
-        JSONObject jsonObject = JSONObject.fromObject(data);
-        String result = jsonObject.toString();
-        return result;
+        PaginatedList<NewsDto> dtoList = newsManageService.listNews(criteria);
+        response.setBody(dtoList).setSuccess(true);
+        return response;
     }
 
+    @ResponseBody
+    @RequestMapping("/detail")
+    public BaseResponse<NewsDto> toDetail(Integer newId) {
+        BaseResponse<NewsDto> response = new BaseResponse<>();
+        response.setMessage("查询失败");
+        if(newId != null) {
+            NewsDto newsDto = newsManageService.newDetail(newId);
+            response.setSuccess(true).setBody(newsDto).setMessage("查询成功");
+        }
+        return response;
+    }
+
+    @ResponseBody
+    @RequestMapping("/delete")
+    public BaseResponse delete(Integer newId) {
+        BaseResponse response = new BaseResponse();
+        if(newId == null) {
+            response.setMessage("id不能为空");
+        }
+        NewsDto newsDto = new NewsDto();
+        newsDto.setNewId(newId);
+        newsDto.setDeleted(1);
+        try {
+            newsManageService.putNews(newsDto);
+            response.setMessage("删除成功").setSuccess(true);
+        } catch (NewException e) {
+            response.setMessage("删除失败");
+        }
+        return response;
+    }
 
 }

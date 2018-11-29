@@ -1,13 +1,29 @@
 <#include "/inc/main-page-template.htm"/>
 <@pageContent>
-<style>
+<style type="text/css">
     .news-list{
         font-style: oblique;
         font-size: x-large;
         color: #03b8cf;
         padding: 20px 20px 20px 20px;
     }
+    #list-dt table {
+        border-style:none;
+    }
+    #list-dt table td{
+        border-style:none;
+        text-align: center;
+    }
 </style>
+<div class="page-table-wapper">
+    <div class="portlet light bordered">
+        <div class="row">
+            <div class="col-md-12 text-right" style="margin-top: 20px;margin-left: 1px; ">
+                <button type="button" class="btn" style="background-color: #FFF;color: #03b8cf" id="change-button">换一批</button>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="page-table-wapper">
     <div class="portlet light bordered">
         <div id="list-dt">
@@ -16,18 +32,47 @@
                     <table class="data-table-min table table-striped table-bordered table-hover table-checkable order-column dataTable no-footer">
                         <tbody>
                         <tr>
+                            <td>
                             <a class="news-list">唐嫣罗晋结婚，微博没崩</a>
+                            </td>
                         </tr>
                         <tr>
+                            <td>
                             <a class="news-list">唐嫣罗晋结婚，微博没崩</a>
+                            </td>
                         </tr>
                         </tbody>
                     </table>
-                </div>
-                <div class="dataTables-pageNav">
                 </div>
             </div>
         </div>
     </div>
 </div>
 </@pageContent>
+<@jsContent>
+<script type="text/javascript">
+    var dateTable;
+    $(function(){
+        dateTable = new DataTable({
+            id: "#list-dt",
+            url: conf.ctx + "/first/list.do",
+            type: 'post',
+            selectOne: true,  //单选
+            pageInterval: 10,
+            columns: [
+
+                {
+                    field: "newName", title: "", className: "center", format: function (val, row, i) {
+                        return "<a class='news-list' href=" + conf.ctx + "/first/to-detail.do?newId=" + row['newId'] + ">" + val + "</a>";
+                    }
+                }
+            ]
+        });
+        dateTable.init();
+    });
+    $("#change-button").click(function(){
+        dateTable.reload();
+    });
+
+</script>
+</@jsContent>

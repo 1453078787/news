@@ -26,11 +26,38 @@
                 </div>
             </div>
             <div class="form-group">
-                <div style="width: 100%;height: 500px;border: 1px solid #ccc;border-radius: 4px"  id="news-content">
+                <div style="width: 100%;height: 1000px;border: 0px solid #ccc;border-radius: 4px;font-size: 20px"  id="news-content">
                     ${(newsDto.newContent) ! ''}
                 </div>
             </div>
         </form>
     </div>
 </div>
+<div class="modal fade" id="showModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-fullscreen" style="height: 100%">
+        <div class="modal-content" style="height: 100%">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <div class="modal-body">
+
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
 </@pageContent>
+<@jsContent>
+<link rel="stylesheet" href="${css}/tab/zui.tabs.css?v=${appver}" type="text/css" />
+<script type="text/javascript" src="${js}/tab/zui.tabs.js?v=${appver}"></script>
+<link rel="stylesheet" href="${css}/lightbox.less?v=${appver}" type="text/css" />
+<script type="text/javascript" src="${js}/lightbox.js?v=${appver}"></script>
+<script type="text/javascript">
+    $("img").click(function(){
+       $(".modal-body").empty();
+       var img = this.cloneNode(true);
+       $(".modal-body").append($(img));
+       $(".modal-body img").attr("style","");
+       $("#showModal").modal("show");
+    });
+</script>
+</@jsContent>

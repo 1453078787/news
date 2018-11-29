@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import tdh.thunder.common.PaginatedList;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -30,39 +31,58 @@ public class NewsManageServiceImpl implements NewsManageService{
     private NewTypeMapper newTypeMapper;
 
     @Override
-    public List<NewsDto> listNews(NewCriteria criteria) {
+    public PaginatedList<NewsDto> listNews(NewCriteria criteria) {
+        PaginatedList<NewsDto> paginatedList = new PaginatedList<>();
         List<NewsDto> list = newMapper.list(criteria);
         if(!criteria.getIsAllList()){
             List<NewsDto> dtoList = new ArrayList<>();
             for(int i=0; i<10; i++){
                 if(CollectionUtils.isEmpty(list)){
-                    return dtoList;
+                    paginatedList.setResult(dtoList);
+                    return paginatedList;
                 }
                 int intBounded = 0 + ((int) (new Random().nextFloat() * (list.size() - 0)));
                 dtoList.add(list.get(intBounded));
                 list.remove(intBounded);
             }
-            return dtoList;
+            paginatedList.setResult(dtoList);
+            return paginatedList;
+        } else {
+            if (0 != criteria.getPagesize()) {
+                int total = newMapper.countNews(criteria);
+                criteria.setTotal(total);
+            }
+            if (0 == criteria.getPagesize()) {
+                criteria.setTotal(list.size());
+            }
+            paginatedList.setResult(list);
+            paginatedList.setPagination(criteria);
+            return paginatedList;
         }
-       return list;
     }
 
     @Override
     public void putNews(NewsDto newsDto) throws NewException {
         New news = new New();
-        newsDto.setCreatedBy(1);
-        newsDto.setCreatedByName("liu");
-        newsDto.setCreatedTime(new Date());
+
         newsDto.setUpdatedBy(1);
         newsDto.setUpdatedByName("liu");
         newsDto.setUpdatedTime(new Date());
-        newsDto.setViewNumber(0);
+
         BeanUtils.copyProperties(newsDto, news);
         try {
-            newMapper.insertSelective(news);
+            if (news.getNewId() == null) {
+                news.setCreatedBy(1);
+                news.setCreatedByName("liu");
+                news.setCreatedTime(new Date());
+                news.setViewNumber(0);
+                newMapper.insertSelective(news);
+            } else {
+                newMapper.updateByPrimaryKeySelective(news);
+            }
         } catch (Exception e) {
             LOG.error(e.getMessage(),e);
-            throw new NewException("新增失败");
+            throw new NewException("编辑新闻失败");
         }
     }
 

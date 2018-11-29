@@ -3,6 +3,7 @@ package news.service;
 import news.common.NewException;
 import news.common.dto.NewsDto;
 import news.common.dto.criteria.NewCriteria;
+import tdh.thunder.common.PaginatedList;
 
 import java.util.List;
 
@@ -12,7 +13,7 @@ public interface NewsManageService {
      * @param criteria
      * @return
      */
-    List<NewsDto> listNews(NewCriteria criteria);
+    PaginatedList<NewsDto> listNews(NewCriteria criteria);
 
     /**
      * 上传 保存 new

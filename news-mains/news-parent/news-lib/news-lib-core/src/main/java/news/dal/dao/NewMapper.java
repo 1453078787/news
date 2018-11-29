@@ -41,4 +41,6 @@ public interface NewMapper {
      * criteria列出新闻
      */
     List<NewsDto> list(NewCriteria criteria);
+
+    int countNews(NewCriteria criteria);
 }

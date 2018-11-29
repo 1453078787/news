@@ -1,6 +1,8 @@
 package news.common.dto.criteria;
 
-public class NewCriteria {
+import tdh.thunder.common.Pagination;
+
+public class NewCriteria extends Pagination {
     private Integer newTypeId;
     private boolean isAllList;
 

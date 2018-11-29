@@ -51,18 +51,13 @@ function DataTable(options) {
         }
     }
 
-    this.getSelecteds = function(field,flag) {
+    this.getSelecteds = function(field) {
         var target = this;
         var $table = $(this.opts.id);
         var arr = [];
         $table.find(".group-checkable-item").each(function(i, item) {
             if ($(item).prop('checked')) {
-
                 var data = target.page.rows[$(item).val()];
-                if (flag) {
-                    var deptSupTotalScore = $(this).parents("tr").find(".deptSupTotalScore").val();
-                    data.deptSupTotalScore = deptSupTotalScore ? deptSupTotalScore : "";
-                }
                 if(field){
                     arr.push(data[field]);
                 }else{
@@ -134,15 +129,10 @@ function DataTable(options) {
             + '<div class="col-md-5 col-sm-5">'
             + '<div aria-live="polite" role="status" id="sample_1_info" class="dataTables_info">'
             + '<label> <select class="bs-select form-control input-small input-pagesize" data-style="btn-primary">'
-            + '<option value="5">5</option>'
             + '<option value="10">10</option>'
-            + '<option value="15">15</option>'
             + '<option value="20">20</option>'
-            + '<option value="30">30</option>'
             + '<option value="50">50</option>'
             + '<option value="100">100</option>'
-            //			+ '<option value="200">200</option>'
-            //			+ '<option value="300">300</option>'
             + '</select>'
             + '</label> 当前第'+page.page+'/'+page.pageCount+'页 ，共'+page.total+'条</div></div>'
             + '<div class="col-md-7 col-sm-7">'
@@ -151,14 +141,14 @@ function DataTable(options) {
 
         if(page.page <= 1){
             if(interval >= 5){
-                html+= '<li class="prev disabled"><a title="首页"><i class="fa fa-angle-double-left"></i></a></li>';
+                html+= '<li class="prev disabled"><a title="首页"><i class="icon icon-double-angle-left"></i></a></li>';
             }
-            html+= '<li class="prev disabled"><a href="javascript:;" title="上一页"> <i class="fa fa-angle-left"></i></a></li>';
+            html+= '<li class="prev disabled"><a href="javascript:;" title="上一页"> <i class="icon icon-angle-left"></i></a></li>';
         }else{
             if(interval >= 5){
-                html+= '<li class="prev page-btn"><a data-id="'+(1)+'" href="javascript:;" title="首页"><i class="fa fa-angle-double-left"></i></a></li>';
+                html+= '<li class="prev page-btn"><a data-id="'+(1)+'" href="javascript:;" title="首页"><i class="icon icon-double-angle-left"></i></a></li>';
             }
-            html+= '<li class="prev page-btn"><a data-id="'+(parseInt(page.page)-1)+'" href="javascript:;" title="上一页"> <i class="fa fa-angle-left"></i></a></li>';
+            html+= '<li class="prev page-btn"><a data-id="'+(parseInt(page.page)-1)+'" href="javascript:;" title="上一页"> <i class="icon icon-angle-left"></i></a></li>';
         }
 
         for(var i=begin; i <= over;i++){
@@ -172,14 +162,14 @@ function DataTable(options) {
         }
 
         if(page.page >= page.pageCount){
-            html+= '<li class="next disabled"><a href="javascript:;" title="下一页"><i class="fa fa-angle-right"></i></a></li>';
+            html+= '<li class="next disabled"><a href="javascript:;" title="下一页"><i class="icon icon-angle-right"></i></a></li>';
             if(interval >= 5){
-                html+= '<li class="next disabled"><a title="尾页"><i class="fa fa-angle-double-right"></i></a></li>';
+                html+= '<li class="next disabled"><a title="尾页"><i class="icon icon-double-angle-right"></i></a></li>';
             }
         }else{
-            html+= '<li class="next page-btn"><a data-id="'+(parseInt(page.page)+1)+'" href="javascript:;" title="下一页"><i class="fa fa-angle-right"></i></a></li>';
+            html+= '<li class="next page-btn"><a data-id="'+(parseInt(page.page)+1)+'" href="javascript:;" title="下一页"><i class="icon icon-angle-right"></i></a></li>';
             if(interval >= 5){
-                html+= '<li class="next page-btn"><a data-id="'+(page.pageCount)+'" href="javascript:;" title="尾页"><i class="fa fa-angle-double-right"></i></a></li>';
+                html+= '<li class="next page-btn"><a data-id="'+(page.pageCount)+'" href="javascript:;" title="尾页"><i class="icon icon-double-angle-right"></i></a></li>';
             }
         }
         html+=  '</ul>' + '</div>' + '</div>' + '</div>';
@@ -196,7 +186,7 @@ function DataTable(options) {
             target.params.page = 1;
             target.reload(target.params);
         });
-        $table.find(".dataTables-pageNav .bs-select").val(page.pagesize);
+        $table.find(".dataTables-pageNav .bs-select").val(page.pageSize);
     }
 
     this.getRowHtml = function(row,index){
@@ -283,7 +273,7 @@ function DataTable(options) {
                         $table.find("table tbody").html(bodyHtml);
                     }
 
-                    if(target.opts.isPage) {
+                    if(target.page.page) {
                         target.initPageNav($table,target.page);
                     }
 
